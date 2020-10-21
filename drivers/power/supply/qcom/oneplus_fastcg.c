@@ -316,7 +316,7 @@ static void dashchg_fw_update(struct work_struct *work)
 		reset_mcu_and_request_irq(di);
 		wake_unlock(&di->fastchg_update_fireware_lock);
 		set_property_on_smbcharger(POWER_SUPPLY_PROP_SWITCH_DASH, true);
-		pr_info("FW check success\n");
+		pr_info("FW check success\n"); /* david@bsp add log */
 		return;
 	}
 	pr_info("start erasing data.......\n");
@@ -377,7 +377,6 @@ update_fw_err:
 	set_property_on_smbcharger(POWER_SUPPLY_PROP_SWITCH_DASH, true);
 	pr_err("result=fail\n");
 }
-
 
 static struct external_battery_gauge *bq27541_data;
 void bq27541_information_register(

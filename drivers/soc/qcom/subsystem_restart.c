@@ -844,7 +844,6 @@ int op_restart_modem(void)
 }
 EXPORT_SYMBOL(op_restart_modem);
 
-
 static int subsys_start(struct subsys_device *subsys)
 {
 	int ret;

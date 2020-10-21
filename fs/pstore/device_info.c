@@ -8,6 +8,7 @@
 #include <linux/pstore.h>
 
 #include <device_info.h>
+#include <linux/param_rw.h>
 
 static int __init device_info_init(void)
 {
@@ -17,7 +18,7 @@ static int __init device_info_init(void)
 	for (i = 0; i < MAX_ITEM; i++) {
 		substr = strnstr(boot_command_line,
 			cmdline_info[i],
-			sizeof(cmdline_info[i]));
+			strlen(boot_command_line));
 		if (substr != NULL)
 			substr += strlen(cmdline_info[i]);
 		else
@@ -91,8 +92,12 @@ static void __init write_device_info(const char *key, const char *value)
 
 static int __init init_device_info(void)
 {
+	char *ptr = NULL;
 
 	device_info_init();
+	ptr = oem_pcba_number;
+	get_param_by_index_and_offset(0, 0x4D, ptr, 28);
+
 	pstore_write_device_info(" * * * begin * * * \r\n",
 		strlen(" * * * begin * * * \r\n"));
 

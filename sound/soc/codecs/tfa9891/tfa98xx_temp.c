@@ -2249,6 +2249,9 @@ static int tfa98xx_load_container(struct tfa98xx *tfa98xx)
 	{
 		pr_err("Failed to read %s\n", fw_name);
 		return ret;
+=======
+		return ret;
+>>>>>>> opKernel/oneplus/QC8998_Q_10.0
 	}
 	
 	pr_err("loaded %s - size: %zu\n", fw_name,
